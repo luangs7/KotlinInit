@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">KotlinInit</string>
+
+
+    <string name="empty">Todos os campos são obrigatórios.</string>
+    <string name="cpfInvalido">CPF/CNPJ é inválido.</string>
+    <string name="html">Todos os campos são obrigatórios.</string>
+
+    <string name="error404">Sem dados cadastrados até o momento.</string>
+    <string name="error401">Autenticação inválida.</string>
+    <string name="error500">Ocorreu um erro. Por favor, verifique seus dados e tente novamente.</string>
+    <string name="errorGps">Verifique seu GPS!</string>
+    <string name="noConnect">Problema de conexão</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="signup">Não tem conta? <b>Cadastre-se</b></string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+</resources>
