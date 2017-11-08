@@ -4,7 +4,7 @@ import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 
 /**
- * Created by Dev_Maker on 19/10/2016.
+ * Created by luan on 19/10/2016.
  */
 class JsonListHelper<T>(wrapped: Class<T>) : ParameterizedType {
 

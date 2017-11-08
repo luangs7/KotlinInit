@@ -7,7 +7,7 @@ import org.json.JSONArray
 import java.text.Normalizer
 
 /**
- * Created by Dev_Maker on 19/10/2016.
+ * Created by luan on 19/10/2016.
  */
 abstract class AbstractLocalDb<E> protected constructor(protected var context: Context) {
     private val gson: Gson
