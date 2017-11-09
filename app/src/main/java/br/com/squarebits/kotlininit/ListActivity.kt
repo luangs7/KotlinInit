@@ -18,7 +18,7 @@ class ListActivity : BaseActivity() {
         adapter = MyBaseAdapter(this)
 
 
-        val strings = listOf("Fowler", "Beck", "Evans")
+        val strings = listOf(getString(R.string.fowler), "Beck", "Evans")
 
         this.list.setAdapter(adapter)
 

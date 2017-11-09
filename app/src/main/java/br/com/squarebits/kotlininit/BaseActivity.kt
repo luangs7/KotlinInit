@@ -82,8 +82,8 @@ open class BaseActivity : AppCompatActivity(), GeralPresenterImpl.ActivityPresen
         startActivity(Intent(baseContext, activity.javaClass))
     }
     override
-    fun startActivity(mActivity: Activity, extraValue: String, extraKey:String) {
-        startActivity(intentFor<MainActivity>(extraKey to extraValue).clearTop())
+    fun startActivity(mActivity: Activity, extra: String, extraKey:String) {
+        startActivity(intentFor<MainActivity>(extraKey to extra).clearTop())
 
 //        startActivity(Intent(baseContext, activity.javaClass).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
 

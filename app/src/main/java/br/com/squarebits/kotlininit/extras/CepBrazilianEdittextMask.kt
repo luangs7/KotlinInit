@@ -45,7 +45,7 @@ class CepBrazilianEdittextMask(var editText: EditText) : TextWatcher {
             return
         }
         var i = 0
-        for (m in mMask!!.toCharArray()) {
+        for (m in mMask.toCharArray()) {
             if (m != '#') {
                 mask.append(m)
                 continue
