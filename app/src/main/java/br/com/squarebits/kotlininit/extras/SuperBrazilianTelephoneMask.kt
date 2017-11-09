@@ -12,7 +12,7 @@ class SuperBrazilianTelephoneMask(var editText: EditText) : TextWatcher {
 
     protected var isUpdating: Boolean = false
     protected var mOldString = ""
-    protected var mMask: String? = ""
+    lateinit protected var mMask: String
 
     internal var befores = ""
 

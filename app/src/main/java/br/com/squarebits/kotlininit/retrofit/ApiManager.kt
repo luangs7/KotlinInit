@@ -15,9 +15,9 @@ import java.util.concurrent.TimeUnit
 class ApiManager {
 
     var endpoint = "https://api.myjson.com/bins/"
-    var context : Context? = null
-    var retrofit: Retrofit? = null
-    var okHttpClient: OkHttpClient? = null
+    lateinit var context : Context
+    lateinit var retrofit: Retrofit
+    lateinit var okHttpClient: OkHttpClient
 
 
 

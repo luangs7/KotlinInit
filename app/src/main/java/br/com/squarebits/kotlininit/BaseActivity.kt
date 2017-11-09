@@ -19,10 +19,10 @@ import br.com.squarebits.kotlininit.presenter.GeralPresenterImpl
 
 open class BaseActivity : AppCompatActivity(), GeralPresenterImpl.ActivityPresenterImpl {
 
-    internal var mListener: GeralPresenterImpl.ActivityPresenterImpl? = null
-    internal var mViewProgress: View? = null
-    internal var mViewButton: View? = null
-    internal var mActivity: Activity? = null
+    lateinit internal var mListener: GeralPresenterImpl.ActivityPresenterImpl
+    lateinit internal var mViewProgress: View
+    lateinit internal var mViewButton: View
+    lateinit internal var mActivity: Activity
 //    internal var user: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

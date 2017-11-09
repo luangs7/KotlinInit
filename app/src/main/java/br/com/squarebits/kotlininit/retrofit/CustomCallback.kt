@@ -18,17 +18,17 @@ import retrofit2.Response
  */
 class CustomCallback<T> : Callback<T> {
 
-    var context: Context? = null
-    var  dialog: ProgressDialog? = null
-    var onResponse: OnResponse<T>? = null
-    var viewLayout: View? = null
-
+    lateinit var context: Context
+    lateinit var  dialog: ProgressDialog
+    lateinit var onResponse: OnResponse<T>
+    lateinit var viewLayout: View
+    
     constructor(context: Context){
         this.context = context
         dialog = ProgressDialog(context, R.style.AppTheme_AlertDialog)
-        dialog!!.setCancelable(false)
-        dialog!!.setMessage("Buscando dados...")
-        dialog!!.show()
+        dialog.setCancelable(false)
+        dialog.setMessage("Buscando dados...")
+        dialog.show()
 
         this.onResponse = onResponse
     }
@@ -36,9 +36,9 @@ class CustomCallback<T> : Callback<T> {
     constructor(context: Context, onResponse: OnResponse<T>){
         this.context = context
         dialog = ProgressDialog(context, R.style.AppTheme_AlertDialog)
-        dialog!!.setCancelable(false)
-        dialog!!.setMessage("Buscando dados...")
-        dialog!!.show()
+        dialog.setCancelable(false)
+        dialog.setMessage("Buscando dados...")
+        dialog.show()
         this.onResponse = onResponse
     }
 
@@ -46,9 +46,9 @@ class CustomCallback<T> : Callback<T> {
     constructor(context: Context, viewLayout: View, onResponse: OnResponse<T>) {
         this.context = context
         dialog = ProgressDialog(context, R.style.AppTheme_AlertDialog)
-        dialog!!.setCancelable(false)
-        dialog!!.setMessage("Buscando dados...")
-        dialog!!.show()
+        dialog.setCancelable(false)
+        dialog.setMessage("Buscando dados...")
+        dialog.show()
         this.onResponse = onResponse
         this.viewLayout = viewLayout
     }
@@ -63,9 +63,9 @@ class CustomCallback<T> : Callback<T> {
         if (loadDialog) {
             try {
                 dialog = ProgressDialog(context, R.style.AppTheme_AlertDialog)
-                dialog!!.setCancelable(false)
-                dialog!!.setMessage("Buscando dados...")
-                dialog!!.show()
+                dialog.setCancelable(false)
+                dialog.setMessage("Buscando dados...")
+                dialog.show()
             } catch (ex: Throwable) {
                 Log.e(" dialog!!", "CustomCallback: ", ex)
             }
@@ -82,9 +82,9 @@ class CustomCallback<T> : Callback<T> {
         if (loadDialog) {
             try {
                 dialog = ProgressDialog(context, R.style.AppTheme_AlertDialog)
-                dialog!!.setCancelable(false)
-                dialog!!.setMessage("Buscando dados...")
-                dialog!!.show()
+                dialog.setCancelable(false)
+                dialog.setMessage("Buscando dados...")
+                dialog.show()
             } catch (ex: Throwable) {
                 Log.e(" dialog!!", "CustomCallback: ", ex)
             }
@@ -100,18 +100,18 @@ class CustomCallback<T> : Callback<T> {
     constructor(context: Context,  Text: String, onResponse: OnResponse<T>)  {
         this.context = context
         dialog = ProgressDialog(context, R.style.AppTheme_AlertDialog)
-        dialog!!.setCancelable(false)
-        dialog!!.setMessage(Text)
-        dialog!!.show()
+        dialog.setCancelable(false)
+        dialog.setMessage(Text)
+        dialog.show()
         this.onResponse = onResponse
     }
 
     constructor(context: Activity,  Text: String, onResponse: OnResponse<T>)  {
         this.context = context
         dialog = ProgressDialog(context, R.style.AppTheme_AlertDialog)
-        dialog!!.setCancelable(false)
-        dialog!!.setMessage(Text)
-        dialog!!.show()
+        dialog.setCancelable(false)
+        dialog.setMessage(Text)
+        dialog.show()
         this.onResponse = onResponse
     }
 
@@ -119,9 +119,9 @@ class CustomCallback<T> : Callback<T> {
     constructor(context: Context,  Text: String, viewLayout: View, onResponse: OnResponse<T>)  {
         this.context = context
         dialog = ProgressDialog(context, R.style.AppTheme_AlertDialog)
-        dialog!!.setCancelable(false)
-        dialog!!.setMessage( Text)
-        dialog!!.show()
+        dialog.setCancelable(false)
+        dialog.setMessage( Text)
+        dialog.show()
         this.onResponse = onResponse
         this.viewLayout = viewLayout
     }
@@ -129,22 +129,22 @@ class CustomCallback<T> : Callback<T> {
     override fun onResponse(call: Call<T>?, response: Response<T>?) {
         var error = ""
         try {
-            dialog!!.dismiss()
+            dialog.dismiss()
         } catch (e: Exception) {
 
         }
 
         if (response!!.isSuccessful())
-            onResponse!!.onResponse(response.body())
+            onResponse.onResponse(response!!.body())
         else {
             if (response.code() == 202) {
                 try {
-                    onResponse!!.onResponse(response.body())
+                    onResponse.onResponse(response.body())
                 } catch (ex: Exception) {
                     try {
-                        onResponse!!.onFailure(Throwable(Gson().fromJson<BaseRequest>(error, BaseRequest::class.java).getMessage()))
+                        onResponse.onFailure(Throwable(Gson().fromJson<BaseRequest>(error, BaseRequest::class.java).getMessage()))
                     } catch (ex2: Exception) {
-                        onResponse!!.onFailure(Throwable(context!!.getResources().getString(R.string.error401)))
+                        onResponse.onFailure(Throwable(context.getResources().getString(R.string.error401)))
                     }
 
                 }
@@ -153,12 +153,12 @@ class CustomCallback<T> : Callback<T> {
             if (response.code() == 401) {
                 try {
                     error = response.errorBody().string()
-                    onResponse!!.onFailure(Throwable(Gson().fromJson<BaseRequest>(error, BaseRequest::class.java).getMessage()))
+                    onResponse.onFailure(Throwable(Gson().fromJson<BaseRequest>(error, BaseRequest::class.java).getMessage()))
                 } catch (ex: Exception) {
                     try {
-                        onResponse!!.onFailure(Throwable(Gson().fromJson<BaseRequest>(error, BaseRequest::class.java).getMessage()))
+                        onResponse.onFailure(Throwable(Gson().fromJson<BaseRequest>(error, BaseRequest::class.java).getMessage()))
                     } catch (ex2: Exception) {
-                        onResponse!!.onFailure(Throwable(context!!.getResources().getString(R.string.error401)))
+                        onResponse.onFailure(Throwable(context.getResources().getString(R.string.error401)))
                     }
 
                 }
@@ -166,12 +166,12 @@ class CustomCallback<T> : Callback<T> {
             } else if (response.code() == 404) {
                 try {
                     error = response.errorBody().string()
-                    onResponse!!.onResponse(Gson().fromJson<BaseRequest>(error, BaseRequest::class.java) as T)
+                    onResponse.onResponse(Gson().fromJson<BaseRequest>(error, BaseRequest::class.java) as T)
                 } catch (ex: Exception) {
                     try {
-                        onResponse!!.onFailure(Throwable(Gson().fromJson<BaseRequest>(error, BaseRequest::class.java).getMessage()))
+                        onResponse.onFailure(Throwable(Gson().fromJson<BaseRequest>(error, BaseRequest::class.java).getMessage()))
                     } catch (ex2: Exception) {
-                        onResponse!!.onFailure(Throwable(context!!.getResources().getString(R.string.error404)))
+                        onResponse.onFailure(Throwable(context.getResources().getString(R.string.error404)))
                     }
 
                 }
@@ -186,36 +186,36 @@ class CustomCallback<T> : Callback<T> {
                     for (i in 0..jsonArray.length() - 1) {
                         message = jsonArray.get(i).toString()
                     }
-                    onResponse!!.onFailure(Throwable(message))
+                    onResponse.onFailure(Throwable(message))
                 } catch (ex: Exception) {
                     try {
-                        onResponse!!.onFailure(Throwable(Gson().fromJson<BaseRequest>(error, BaseRequest::class.java).getMessage()))
+                        onResponse.onFailure(Throwable(Gson().fromJson<BaseRequest>(error, BaseRequest::class.java).getMessage()))
                     } catch (ex2: Exception) {
-                        onResponse!!.onFailure(Throwable("Ocorreu um erro"))
+                        onResponse.onFailure(Throwable("Ocorreu um erro"))
                     }
 
                 }
 
             } else if (response.code() == 500) {
                 try {
-                    onResponse!!.onFailure(Throwable(context!!.getResources().getString(R.string.error500)))
+                    onResponse.onFailure(Throwable(context.getResources().getString(R.string.error500)))
                 } catch (ex: Exception) {
                     try {
-                        onResponse!!.onFailure(Throwable(Gson().fromJson<BaseRequest>(error, BaseRequest::class.java).getMessage()))
+                        onResponse.onFailure(Throwable(Gson().fromJson<BaseRequest>(error, BaseRequest::class.java).getMessage()))
                     } catch (ex2: Exception) {
-                        onResponse!!.onFailure(Throwable("Ocorreu um erro"))
+                        onResponse.onFailure(Throwable("Ocorreu um erro"))
                     }
 
                 }
 
             } else if (response.code() == 429) {
                 try {
-                    onResponse!!.onRetry(Throwable(context!!.getResources().getString(R.string.error401)))
+                    onResponse.onRetry(Throwable(context.getResources().getString(R.string.error401)))
                 } catch (ex: Exception) {
                     try {
-                        onResponse!!.onFailure(Throwable(Gson().fromJson<BaseRequest>(error, BaseRequest::class.java).getMessage()))
+                        onResponse.onFailure(Throwable(Gson().fromJson<BaseRequest>(error, BaseRequest::class.java).getMessage()))
                     } catch (ex2: Exception) {
-                        onResponse!!.onFailure(Throwable("Ocorreu um erro"))
+                        onResponse.onFailure(Throwable("Ocorreu um erro"))
                     }
 
                 }
@@ -224,9 +224,9 @@ class CustomCallback<T> : Callback<T> {
                 try {
                     error = response.errorBody().string()
                     val errorBody = Gson().fromJson<BaseRequest>(error, BaseRequest::class.java)
-                    onResponse!!.onFailure(Throwable(errorBody.getMessage()))
+                    onResponse.onFailure(Throwable(errorBody.getMessage()))
                 } catch (ex: Exception) {
-                    onResponse!!.onFailure(Throwable("Ocorreu um erro"))
+                    onResponse.onFailure(Throwable("Ocorreu um erro"))
                 }
 
             }
