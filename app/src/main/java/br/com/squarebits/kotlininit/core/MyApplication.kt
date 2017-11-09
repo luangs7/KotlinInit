@@ -188,7 +188,6 @@ class MyApplication : Application() {
 
         fun existeConexao(context: Context): Boolean {
             val connectivity = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            if (connectivity != null) {
                 val netInfo = connectivity.activeNetworkInfo ?: return false
 
                 // Se não existe nenhum tipo de conexão retorna false
@@ -204,9 +203,7 @@ class MyApplication : Application() {
                 } else {
                     false
                 }
-            } else {
-                return false
-            }
+
         }
     }
 }

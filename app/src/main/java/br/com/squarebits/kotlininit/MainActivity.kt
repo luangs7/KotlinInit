@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
 
         ApiManager(this)
-                .retrofit?.create(RequestInterface::class.java)?.
+                .retrofit.create(RequestInterface::class.java)?.
                 getData()?.
                 enqueue(CustomCallback<List<Machine>>(this, onResponse = object : CustomCallback.OnResponse<List<Machine>> {
 

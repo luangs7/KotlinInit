@@ -13,8 +13,10 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import br.com.squarebits.kotlininit.presenter.GeralPresenterImpl
-
-
+import org.jetbrains.anko.clearTop
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.share
 
 
 open class BaseActivity : AppCompatActivity(), GeralPresenterImpl.ActivityPresenterImpl {
@@ -50,11 +52,11 @@ open class BaseActivity : AppCompatActivity(), GeralPresenterImpl.ActivityPresen
     }
     override
     fun onErrorAlert(erro: String) {
-//        UtilsPlus.getInstance().toast(erro, 3)
+        longToast(erro)
     }
     override
     fun onAlertMessage(msg: String) {
-//        UtilsPlus.getInstance().toast(msg, 3)
+        longToast(msg)
     }
 
     override
@@ -80,8 +82,10 @@ open class BaseActivity : AppCompatActivity(), GeralPresenterImpl.ActivityPresen
         startActivity(Intent(baseContext, activity.javaClass))
     }
     override
-    fun startActivity(activity: Activity, extra: String) {
-        startActivity(Intent(baseContext, activity.javaClass).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+    fun startActivity(mActivity: Activity, extraValue: String, extraKey:String) {
+        startActivity(intentFor<MainActivity>(extraKey to extraValue).clearTop())
+
+//        startActivity(Intent(baseContext, activity.javaClass).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
 
     }
 
@@ -91,7 +95,7 @@ open class BaseActivity : AppCompatActivity(), GeralPresenterImpl.ActivityPresen
         builder.setTitle(title)
         builder.setMessage(text)
         builder.setCancelable(false)
-        builder.setPositiveButton("OK") { arg0, arg1 -> arg0.dismiss() }
+        builder.setPositiveButton("OK") { arg0, _ -> arg0.dismiss() }
 
         val alerta = builder.create()
         alerta.show()
@@ -103,7 +107,7 @@ open class BaseActivity : AppCompatActivity(), GeralPresenterImpl.ActivityPresen
         builder.setTitle(title)
         builder.setCancelable(false)
         builder.setMessage(text)
-        builder.setPositiveButton("OK") { arg0, arg1 ->
+        builder.setPositiveButton("OK") { arg0, _ ->
             arg0.dismiss()
 //            finishAffinity()
             startActivity(Intent(baseContext, mActivity.javaClass))
@@ -113,21 +117,15 @@ open class BaseActivity : AppCompatActivity(), GeralPresenterImpl.ActivityPresen
         alerta.show()
     }
 
-    override fun onPhoneDispatcher() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onPhoneDispatcher(number:String) {
+
     }
 
-    override fun onSharedButton() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onSharedButton(text:String,subject: String) {
+        share(text,subject)
     }
 
-    override fun onFacebookButton() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
-    override fun onBack() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     override fun onBackPressed() {
         super.onBackPressed()

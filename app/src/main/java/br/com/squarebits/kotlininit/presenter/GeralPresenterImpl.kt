@@ -16,12 +16,10 @@ class GeralPresenterImpl {
         fun onAlertDialogMessageFinish(title: String, text: String, mActivity: Activity)
         fun onProgressShow()
         fun onProgressDismiss()
-        fun onPhoneDispatcher()
-        fun onSharedButton()
-        fun onFacebookButton()
+        fun onPhoneDispatcher(number:String)
+        fun onSharedButton(text:String, subject: String)
         fun startActivity(activity: Activity)
-        fun startActivity(activity: Activity, extra: String)
-        fun onBack()
+        fun startActivity(activity: Activity, extra: String, extraKey: String)
 
     }
 

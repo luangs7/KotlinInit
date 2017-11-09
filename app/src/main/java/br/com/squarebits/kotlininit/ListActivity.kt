@@ -18,11 +18,10 @@ class ListActivity : BaseActivity() {
         adapter = MyBaseAdapter(this)
 
 
-        var strings = ArrayList<String>()
-        strings.add("A")
-        strings.add("B")
-        strings.add("C")
+        val strings = listOf("Fowler", "Beck", "Evans")
+
         this.list.setAdapter(adapter)
+
         adapter.refresh(strings)
 
     }

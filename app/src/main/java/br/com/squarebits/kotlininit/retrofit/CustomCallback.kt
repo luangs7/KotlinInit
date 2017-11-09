@@ -135,7 +135,7 @@ class CustomCallback<T> : Callback<T> {
         }
 
         if (response!!.isSuccessful())
-            onResponse.onResponse(response!!.body())
+            onResponse.onResponse(response.body())
         else {
             if (response.code() == 202) {
                 try {

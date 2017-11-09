@@ -16,8 +16,8 @@ class ApiManager {
 
     var endpoint = "https://api.myjson.com/bins/"
     lateinit var context : Context
-    lateinit var retrofit: Retrofit
-    lateinit var okHttpClient: OkHttpClient
+    var retrofit: Retrofit
+    var okHttpClient: OkHttpClient
 
 
 
