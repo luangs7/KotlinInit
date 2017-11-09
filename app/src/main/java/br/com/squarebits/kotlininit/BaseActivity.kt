@@ -109,7 +109,7 @@ open class BaseActivity : AppCompatActivity(), GeralPresenterImpl.ActivityPresen
         builder.setMessage(text)
         builder.setPositiveButton("OK") { arg0, _ ->
             arg0.dismiss()
-//            finishAffinity()
+            finishAffinity()
             startActivity(Intent(baseContext, mActivity.javaClass))
         }
 
@@ -118,14 +118,12 @@ open class BaseActivity : AppCompatActivity(), GeralPresenterImpl.ActivityPresen
     }
 
     override fun onPhoneDispatcher(number:String) {
-
+//        makeCall(number)
     }
 
     override fun onSharedButton(text:String,subject: String) {
         share(text,subject)
     }
-
-
 
     override fun onBackPressed() {
         super.onBackPressed()

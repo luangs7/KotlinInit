@@ -6,6 +6,8 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ListView
+import br.com.squarebits.kotlininit.dao.LocalDbImplement
+import br.com.squarebits.kotlininit.model.User
 import java.text.SimpleDateFormat
 import java.util.regex.Pattern
 
@@ -34,27 +36,27 @@ class Utils {
     }
 
     //
-//    fun getSharedAuth(context: Context): User {
-//        return LocalDbImplement<User>(context).getDefault(User::class.java)
-//    }
-//
+    fun getSharedAuth(context: Context): User {
+        return LocalDbImplement<User>(context).getDefault(User::class.java) as User
+    }
+
 //    fun getSharedCard(context: Context): CreditCard {
 //        return LocalDbImplement<CreditCard>(context).getDefault(CreditCard::class.java)
 //    }
 //
 //
 //    //
-//    fun clearShared(context: Context) {
-//        LocalDbImplement<User>(context).clearObject(User::class.java)
-//        //        new LocalDbImplement<CreditCard>(context).clearObject(CreditCard.class);
+    fun clearShared(context: Context) {
+        LocalDbImplement<User>(context).clearObject(User::class.java)
+        //        new LocalDbImplement<CreditCard>(context).clearObject(CreditCard.class);
 //        LocalDbImplement<Customer>(context).clearObject(Customer::class.java)
-//
-//    }
+
+    }
 //
 //    //
-//    fun setShared(context: Context, `object`: User) {
-//        LocalDbImplement<User>(context).save(`object`)
-//    }
+    fun setShared(context: Context, `object`: User) {
+        LocalDbImplement<User>(context).save(`object`)
+    }
 //
 //    fun setShared(context: Context, `object`: Customer) {
 //        LocalDbImplement<Customer>(context).save(`object`)
